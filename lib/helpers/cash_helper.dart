@@ -10,6 +10,7 @@ class CashHelper {
   static Future<bool> setData(
       {required String key, required dynamic value}) async {
     if (value is bool) {
+
       return await sharedPreferences!.setBool(key, value);
     }
     if (value is int) {

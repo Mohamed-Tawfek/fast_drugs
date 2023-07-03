@@ -1,5 +1,4 @@
 import 'package:fast_drugs/controller/register_cubit/register_cubit.dart';
-import 'package:fast_drugs/helpers/cash_helper.dart';
 import 'package:fast_drugs/shared/components/dialogs.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/view/screens/home_screen.dart';
@@ -35,94 +34,94 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: deviceWidth * 0.04, vertical: deviceHeight * 0.03),
+            horizontal: context.deviceWidth * 0.04, vertical: context.deviceHeight * 0.03),
         child: Form(
           key: formKey,
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/drug4.png',
-                  width: deviceWidth * 0.3,
-                  height: deviceHeight * 0.1,
-
-                ),
-                _buildDivider(deviceHeight),
-                const Text(
-                  AppStrings.reachYourGoal,
-                  style: TextStyle(
-                      fontSize: 23.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
-                _buildDivider(deviceHeight),
-                const Text(
-                  AppStrings.joinUs,
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
-                SizedBox(
-                  height: deviceHeight * 0.04,
-                ),
-                _buildFirstNameField(),
-                _buildDivider(deviceHeight),
-                _buildSecondNameField(),
-                _buildDivider(deviceHeight),
-                _buildEmailField(),
-                _buildDivider(deviceHeight),
-                _buildPasswordField(controller: passwordController),
-                _buildDivider(deviceHeight),
-                _buildPasswordField(
-                    controller: confirmPasswordController, isConfirm: true),
-                _buildDivider(deviceHeight),
-                BlocProvider(
-                  create: (context) => RegisterCubit(),
-                  child: BlocConsumer<RegisterCubit, RegisterState>(
-                    listener: (listenerContext, state) {
-                 if(state is CreateAccountInProgress){
-                   showProgressDialog(listenerContext);
-                 }
-                 else if(state is CreateAccountSuccess){
-                   Navigator.of(context, rootNavigator: true).pop();
-                   showCustomSnackBar(context,'Successfully registered');
-
-                 context.pushAndRemoveUntil(const HomeScreen());
-                 }
-                 else if(state is CreateAccountError){
-                 // Navigator.pop(listenerContext);
-                 //  Navigator.of(context, rootNavigator: true).pop();
-context.pop();
-                   showErrorDialog(context: listenerContext, message: state.errorMessage);
-                 }
-                    },
-                    builder: (context, state) {
-                      return DefaultButton(
-                        text: AppStrings.create,
-                        function: () {
-                          if (formKey.currentState!.validate()) {
-                            RegisterCubit.get(context).createAccount(
-                                firstName: firstNameController.text,
-                                lastName: lastNameController.text,
-                                email: emailController.text,
-                                password: passwordController.text,
-                                confirmPassword:
-                                    confirmPasswordController.text);
-                          }
-                        },
-                      );
-                    },
+            physics: const BouncingScrollPhysics(),
+            child: SizedBox(
+              height: context.deviceHeight * 1.2,
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/drug4.png',
+                    width: context.deviceWidth * 0.3,
+                    height: context.deviceHeight * 0.1,
                   ),
-                ),
-              ],
+                  _buildDivider(context.deviceHeight),
+                  const Text(
+                    AppStrings.reachYourGoal,
+                    style: TextStyle(
+                        fontSize: 23.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                  _buildDivider(context.deviceHeight),
+                  const Text(
+                    AppStrings.joinUs,
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                  SizedBox(
+                    height: context.deviceHeight * 0.04,
+                  ),
+                  _buildFirstNameField(),
+                  _buildDivider(context.deviceHeight),
+                  _buildSecondNameField(),
+                  _buildDivider(context.deviceHeight),
+                  _buildEmailField(),
+                  _buildDivider(context.deviceHeight),
+                  _buildPasswordField(controller: passwordController),
+                  _buildDivider(context.deviceHeight),
+                  _buildPasswordField(
+                      controller: confirmPasswordController, isConfirm: true),
+                  _buildDivider(context.deviceHeight),
+                  BlocProvider(
+                    create: (context) => RegisterCubit(),
+                    child: BlocConsumer<RegisterCubit, RegisterState>(
+                      listener: (listenerContext, state) {
+                        if (state is CreateAccountInProgress) {
+                          showProgressDialog(listenerContext);
+                        } else if (state is CreateAccountSuccess) {
+                          Navigator.of(context, rootNavigator: true).pop();
+                          showCustomSnackBar(
+                              context, 'Successfully registered');
+
+                          context.pushAndRemoveUntil(const HomeScreen());
+                        } else if (state is CreateAccountError) {
+                          context.pop();
+                          showErrorDialog(
+                              context: listenerContext,
+                              message: state.errorMessage);
+                        }
+                      },
+                      builder: (context, state) {
+                        return DefaultButton(
+                          text: AppStrings.create,
+                          function: () {
+                            if (formKey.currentState!.validate()) {
+                              RegisterCubit.get(context).createAccount(
+                                  firstName: firstNameController.text,
+                                  lastName: lastNameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  confirmPassword:
+                                      confirmPasswordController.text);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -191,7 +190,7 @@ context.pop();
     return StatefulBuilder(builder: (_, StateSetter setState) {
       return DefaultFormField(
         controller: controller,
-        label: AppStrings.password,
+        label: isConfirm ? AppStrings.confirmPassword : AppStrings.password,
         prefix: Icons.lock,
         suffix: isPassword ? Icons.visibility_off : Icons.remove_red_eye,
         isPassword: isPassword,

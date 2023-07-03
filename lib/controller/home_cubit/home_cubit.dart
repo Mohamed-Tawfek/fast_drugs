@@ -12,10 +12,10 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
   static HomeCubit get(context) => BlocProvider.of(context);
-  List<Widget> screens = const [
+  List<Widget> screens =   [
     SearchScreen(),
-    LocationScreen(),
-    DonationScreen()
+    const LocationScreen(),
+    const DonationScreen()
   ];
   int currentIndex = 0;
   void bottomNavOnTap(int index) {

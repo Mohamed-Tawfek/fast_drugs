@@ -1,21 +1,19 @@
+import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData getLightTheme() {
   return ThemeData(
-fontFamily: 'Poppins',
-primarySwatch: Colors.green,
-
+      fontFamily: 'Poppins',
+      primarySwatch: LightColors.primary,
       appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(
-          color: Colors.green
-        ),
+          iconTheme: IconThemeData(color: LightColors.appBarIcon),
           systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
+              statusBarColor:LightColors.statusBar ,
               statusBarIconBrightness: Brightness.dark),
-          color: Colors.white,
+          color:LightColors.appBar ,
           elevation: 0.0),
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: LightColors.scaffoldBackground,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: Color(0xff4cb050)));
+          selectedItemColor: LightColors.btnNavSelectedItem));
 }

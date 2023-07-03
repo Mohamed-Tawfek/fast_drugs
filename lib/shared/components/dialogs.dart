@@ -25,6 +25,7 @@ showErrorDialog({required BuildContext context, required String message}) {
     title: 'Oops...',
     text: message,
    confirmBtnColor: Colors.green,
+
   );
 }
 

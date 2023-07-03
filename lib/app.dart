@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
         title: 'Fast Drugs',
         theme: getLightTheme(),
         //  home: HomeScreen(),
-        home: _initialScreen(),
+        home: Directionality(
+            textDirection: TextDirection.rtl,
+            child: _initialScreen()),
       ),
     );
   }

@@ -15,15 +15,23 @@ class HomeScreen extends StatelessWidget {
         builder: (context, state) {
           HomeCubit cubit = HomeCubit.get(context);
           return Scaffold(
-            body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
-              onTap: (int index) {
-                cubit.bottomNavOnTap(index);
-              },
-              items: _buildBottomNavItems(),
+            body: IndexedStack(
+              index: cubit.currentIndex,
+              children: cubit.screens,
+
             ),
+            bottomNavigationBar: BottomNavigationBar(
+            currentIndex: cubit.currentIndex,
+            onTap: (int index) {
+              cubit.bottomNavOnTap(index);
+            },
+            items: _buildBottomNavItems(),
+          ),
           );
+          // return Scaffold(
+          //   body: cubit.screens[cubit.currentIndex],
+
+         // );
         },
       ),
     );

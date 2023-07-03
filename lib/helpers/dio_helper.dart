@@ -11,23 +11,17 @@ class DioHelper {
 
   static Future<Response> postData(
       {required endPoint, Map<String, dynamic>? data, String? token}) async {
-   return await dio!.post(endPoint, data: data) ;
-
-
+    return await dio!.post(endPoint, data: data);
   }
+
   //
-  // static Future<Response> getData({
-  //   required String endPoint,
-  //   String? token,
-  //   String language = 'en',
-  // }) async {
-  //   dio!.options.headers = {
-  //     'lang': language,
-  //     'Content-Type': 'application/json',
-  //     'Authorization': token,
-  //   };
-  //   return await dio!.get(endPoint);
-  // }
+  static Future<Response> getData(
+      {required String endPoint,
+      String? token,
+      String language = 'en',
+     }) async {
+    return await dio!.get(endPoint);
+  }
   //
   // static Future<Response> putData({
   //   required String url,
