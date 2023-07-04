@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
             ),
             bottomNavigationBar: BottomNavigationBar(
+              type:BottomNavigationBarType.fixed,
             currentIndex: cubit.currentIndex,
             onTap: (int index) {
               cubit.bottomNavOnTap(index);
@@ -44,8 +45,12 @@ class HomeScreen extends StatelessWidget {
       BottomNavigationBarItem(
           icon: Icon(Icons.location_on_sharp), label: AppStrings.location),
       BottomNavigationBarItem(
-        icon: Icon(Icons.business),
+        icon: Icon(Icons.volunteer_activism),
         label: AppStrings.donation,
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.settings),
+        label: AppStrings.settings,
       ),
     ];
   }

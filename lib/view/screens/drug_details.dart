@@ -28,7 +28,7 @@ class DrugDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DrugsBlock(
-                    text: AppStrings.drugName,
+                    text: "${AppStrings.drugName}:",
                     content: drug.name,
                   ),
                   DrugsBlock(

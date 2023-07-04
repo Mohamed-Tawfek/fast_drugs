@@ -24,23 +24,7 @@ class BuildSearchedItemsView extends StatelessWidget {
       );
     }
     if (state is GetSearchDataSuccessState && searchedList.isNotEmpty) {
-      return Container(
-        color: LightColors.primary[200],
-        margin: EdgeInsetsDirectional.only(top: context.deviceHeight * 0.12),
-        child: ListView.separated(
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) => BuildSearchedItem(
-            drug: SearchCubit.get(context).searchedData[index],
-          ),
-          separatorBuilder: (BuildContext context, int index) => Container(
-            height: 1,
-            width: double.infinity,
-            padding: EdgeInsetsDirectional.symmetric(
-                horizontal: context.deviceWidth * 0.1),
-          ),
-          itemCount: SearchCubit.get(context).searchedData.length,
-        ),
-      );
+      return BuildSearchedItemsListView();
     }
     if (state is GetSearchDataErrorState && searchedList.isEmpty) {
       return const Center(
@@ -55,5 +39,33 @@ class BuildSearchedItemsView extends StatelessWidget {
       AppStrings.trySearch,
       style: TextStyle(color: Colors.black, fontSize: 30.0),
     ));
+  }
+}
+
+class BuildSearchedItemsListView extends StatelessWidget {
+  const BuildSearchedItemsListView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+
+      margin: EdgeInsetsDirectional.only(top: context.deviceHeight * 0.12),
+      child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (context, index) => BuildSearchedItem(
+          drug: SearchCubit.get(context).searchedData[index],
+        ),
+        separatorBuilder: (BuildContext context, int index) => Container(
+          height: 1,
+          width: double.infinity,
+          color: LightColors.primary,
+          padding: EdgeInsetsDirectional.symmetric(
+              horizontal: context.deviceWidth * 0.2),
+        ),
+        itemCount: SearchCubit.get(context).searchedData.length,
+      ),
+    );
   }
 }
