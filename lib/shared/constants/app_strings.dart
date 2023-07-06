@@ -1,5 +1,6 @@
 class AppStrings {
   AppStrings._();
+  static const String appName = 'Fast Drugs';
   static const String search = 'بحث';
   static const String location = 'الموقع';
   static const String donation = 'التبرع';

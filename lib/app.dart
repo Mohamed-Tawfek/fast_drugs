@@ -1,4 +1,5 @@
 import 'package:fast_drugs/helpers/cash_helper.dart';
+import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:fast_drugs/themes/dark_theme.dart';
 import 'package:fast_drugs/themes/light_theme.dart';
 import 'package:fast_drugs/view/screens/home_screen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               builder: (context, state) {
                 return MaterialApp(
                     debugShowCheckedModeBanner: false,
-                    title: 'Fast Drugs',
+                    title: AppStrings.appName,
                     theme: getLightTheme(),
                     darkTheme: getDarkTheme(),
                     themeMode: ModeCubit.isDark

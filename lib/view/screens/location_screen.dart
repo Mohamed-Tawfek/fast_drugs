@@ -1,4 +1,5 @@
 import 'package:fast_drugs/controller/location_cubit/location_cubit.dart';
+import 'package:fast_drugs/controller/mode_cubit/mode_cubit.dart';
 import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,9 +30,11 @@ class LocationScreen extends StatelessWidget {
     double latitude = cubit.currentPosition!.latitude;
     return GoogleMap(
       zoomControlsEnabled: false,
-
       mapType: MapType.normal,
-      initialCameraPosition: CameraPosition(target: LatLng(latitude, longitude),zoom: 20.0),
+      myLocationButtonEnabled: false,
+
+      myLocationEnabled: true,
+      initialCameraPosition: CameraPosition(target: LatLng(latitude, longitude),zoom: 20.0,   ),
     );
   }
 

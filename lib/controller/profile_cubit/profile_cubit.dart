@@ -82,6 +82,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         .then((value) {
       emit(LogoutSuccessState());
       CashHelper.remove(key: 'userID').then((value) {
+        CashHelper.remove(key: 'historySearch');
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
       }).catchError((error) {
@@ -96,11 +97,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(RemoveAccountLoadingState());
     DioHelper.delete(url: '${ApiConstants.registerEndPoint}/$userID')
         .then((value) {
-      print('value.statusCode*10');
-      print(value.statusCode);
-      print('value.statusCode*10');
+
       emit(RemoveAccountSuccessState());
       CashHelper.remove(key: 'userID').then((value) {
+        CashHelper.remove(key: 'historySearch');
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
       }).catchError((error) {
