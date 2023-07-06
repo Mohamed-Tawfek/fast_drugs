@@ -44,6 +44,8 @@ dependencies:
   flutter_screenutil: ^5.7.0
   regexpattern: ^2.0.1
   flutter_native_splash: ^2.3.1
+  curved_navigation_bar: ^1.0.3
+  restart_app: ^1.2.1
 
 dev_dependencies:
   flutter_test:

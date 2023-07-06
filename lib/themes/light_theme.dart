@@ -10,9 +10,13 @@ ThemeData getLightTheme() {
           iconTheme: IconThemeData(color: LightColors.appBarIcon),
           systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor:LightColors.statusBar ,
+
               statusBarIconBrightness: Brightness.dark),
           color:LightColors.appBar ,
           elevation: 0.0),
+     inputDecorationTheme:InputDecorationTheme(
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: LightColors.textField))
+     ),
       scaffoldBackgroundColor: LightColors.scaffoldBackground,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: LightColors.btnNavSelectedItem));

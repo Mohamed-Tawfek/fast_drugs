@@ -1,11 +1,6 @@
 flutter_native_splash:
-  color: "#4caf50"
-  color_dark: "#4caf50"
-
-  android_12:
-    icon_background_color: "#4caf50"
-    icon_background_color_dark: "#4caf50"
-
-
-
+  android: true
+  ios: true
   web: true
+  image: assets/images/drug4.png
+  color: "#FFFFFF"

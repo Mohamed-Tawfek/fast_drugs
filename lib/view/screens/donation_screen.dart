@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../shared/components/components.dart';
+import '../component/switch_mode.dart';
 
 class DonationScreen extends StatelessWidget {
     DonationScreen({Key? key}) : super(key: key);
@@ -19,74 +20,80 @@ final TextEditingController _address=TextEditingController();
     return   Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding:  EdgeInsetsDirectional.symmetric(horizontal: context.deviceWidth*0.06),
-          child: SingleChildScrollView(
-            physics:const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Image.asset('assets/images/donation.jpg',
-                      height: 50,
-                      width: 50,
-                    ),
-                    SizedBox(width: context.deviceWidth*0.05,),
+    
+        body: SafeArea(
+          child: Padding(
+            padding:  EdgeInsetsDirectional.symmetric(horizontal: context.deviceWidth*0.06,
 
-                    Text(AppStrings.donationForm,
-                      style: TextStyle(
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.bold,
-                          color:  LightColors.primary
+            ),
+            child: SingleChildScrollView(
+              physics:const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  _divider(context),
+                  _divider(context),
+                  Row(
+                    children: [
+                      Image.asset('assets/images/donation.jpg',
+                        height: 50,
+                        width: 50,
                       ),
-                    ),
+                      SizedBox(width: context.deviceWidth*0.05,),
+
+                      Text(AppStrings.donationForm,
+                        style: TextStyle(
+                            fontSize: 25.sp,
+                            fontWeight: FontWeight.bold,
+                            color:  LightColors.primary
+                        ),
+                      ),
 
 
 
-                  ],
-                ),
-                _divider(context),
-                DefaultFormField(
-                  controller: _userNameController,
-                  label:AppStrings.yourFullName,
-                ),
-                _divider(context),
-                DefaultFormField(
-                  controller: _drugNameController,
-                  label:AppStrings.drugName,
-                ),
-                _divider(context),
-                DefaultFormField(
-                  controller: _expirationDateController,
-                  label:AppStrings.expirationDate,
-                ),
-                _divider(context),
+                    ],
+                  ),
+                  _divider(context),
+                  DefaultFormField(
+                    controller: _userNameController,
+                    label:AppStrings.yourFullName,
+                  ),
+                  _divider(context),
+                  DefaultFormField(
+                    controller: _drugNameController,
+                    label:AppStrings.drugName,
+                  ),
+                  _divider(context),
+                  DefaultFormField(
+                    controller: _expirationDateController,
+                    label:AppStrings.expirationDate,
+                  ),
+                  _divider(context),
 
-                DefaultFormField(
-                  controller: _quantity,
-                  label:AppStrings.quantity,
-                ),
-                _divider(context),
+                  DefaultFormField(
+                    controller: _quantity,
+                    label:AppStrings.quantity,
+                  ),
+                  _divider(context),
 
-                DefaultFormField(
-                  controller: _phone,
-                  label:AppStrings.phone,
-                ),
-                _divider(context),
+                  DefaultFormField(
+                    controller: _phone,
+                    label:AppStrings.phone,
+                  ),
+                  _divider(context),
 
-                DefaultFormField(
-                  controller: _address,
-                  label:AppStrings.address,
-                ),
-                _divider(context),
+                  DefaultFormField(
+                    controller: _address,
+                    label:AppStrings.address,
+                  ),
+                  _divider(context),
 
-                DefaultButton(function: (){
+                  DefaultButton(function: (){
 
 
-                }, text: 'تبرع'),
-                SizedBox(height: context.deviceHeight*0.3,)
-              ],
+                  }, text: AppStrings.donate),
+                  SizedBox(height: context.deviceHeight*0.3,)
+                ],
+              ),
             ),
           ),
         ),

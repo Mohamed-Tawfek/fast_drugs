@@ -2,6 +2,7 @@ import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../app.dart';
 import '../../models/drug_model.dart';
 import '../screens/drug_details.dart';
 
@@ -19,7 +20,7 @@ class BuildSearchedItem extends StatelessWidget {
         context.push(DrugDetails(drug: drug));
       },
       child: Container(
-        color: Colors.white,
+        //color: appIsDark?DarkColors.text:LightColors.text,
         padding: EdgeInsets.symmetric(
             vertical: context.deviceHeight * 0.01,
             horizontal: context.deviceWidth * 0.02),

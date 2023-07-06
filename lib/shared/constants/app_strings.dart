@@ -32,4 +32,26 @@ class AppStrings {
   static const String phone = 'رقم الهاتف';
   static const String address = 'العنوان';
   static const String donationForm = 'استمارة التبرع';
-}
+  static const String userName = 'اسم المستخدم';
+  static const String changePassword = 'تغيير كلمة المرور';
+  static const String logout = 'تسجيل خروج';
+  static const String darkMode = 'الوضع المظلم';
+  static const String requiredField = 'هذا الحقل مطلوب للتغيير';
+  static const String change = 'تغيير';
+  static const String cancel ='الغاء';
+  static const String donate ='تبرع';
+  static const String shortPassword ='كلمة المرور قصيرة جدا!';
+  static const String errorPassword ='كلمة المرور غير متطابقة!';
+  static const String emptyEmail ='البريد الالكترونى لا يجب ان يكون فارغا!';
+  static const String emptySecondName ='الاسم الاخير لا يجب ان يكون فارغا!';
+  static const String emptyFirstName ='الاسم الاول لا يجب ان يكون فارغا!';
+  static const String errorEmail ='البريد الالكترونى غير صحيح!';
+  static const String successfullyRegistered ='تم التسجيل بنجاح';
+  static const String error ='خطأ';
+  static const String removeAccount ='حذف الحساب';
+  static const String successfullyChangePassword ='تم تغيير كلمة المرور بنجاح';
+  static const String unfortunately ='للاسف';
+  static const String ok ='تم';
+  static const String confirmLogout ='هل متأكد من تسجيل الخروج؟!';
+  static const String confirmRemoveAccount ='هل متأكد من حذف حسابك؟!';
+  }

@@ -21,18 +21,30 @@ class DioHelper {
       String language = 'en',
      }) async {
     return await dio!.get(endPoint);
+
   }
-  //
-  // static Future<Response> putData({
-  //   required String url,
-  //   required Map data,
-  //   required String token,
-  // }) async {
-  //   dio!.options.headers = {
-  //     'lang': 'en',
-  //     'Content-Type': 'application/json',
-  //     'Authorization': token,
-  //   };
-  //   return await dio!.put(url, data: data);
-  // }
+
+  static Future<Response> putData({
+    required String url,
+      Map? data,
+   }) async {
+
+    return await dio!.put(url, data: data);
+  }
+  static Future<Response> patchData({
+    required String url,
+      Map? data,
+   }) async {
+
+    return await dio!.patch(url, data: data);
+  }
+  static Future<Response> delete({
+    required String url,
+      Map? data,
+   }) async {
+
+    return await dio!.delete(url, data: data);
+  }
+
+
 }

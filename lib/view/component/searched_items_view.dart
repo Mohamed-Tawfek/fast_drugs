@@ -2,9 +2,12 @@ import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/view/component/searched_item_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../app.dart';
+import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../controller/search_cubit/search_cubit.dart';
 import '../../models/drug_model.dart';
 import '../../shared/constants/app_strings.dart';
+import '../../shared/constants/dark_theme_colors.dart';
 import '../../shared/constants/light_theme_colors.dart';
 
 class BuildSearchedItemsView extends StatelessWidget {
@@ -27,17 +30,17 @@ class BuildSearchedItemsView extends StatelessWidget {
       return BuildSearchedItemsListView();
     }
     if (state is GetSearchDataErrorState && searchedList.isEmpty) {
-      return const Center(
+      return   Center(
           child: Text(
         AppStrings.notFound,
-        style: TextStyle(color: Colors.black, fontSize: 30.0),
+        style: TextStyle(color: ModeCubit.isDark?DarkColors.text:LightColors.text, fontSize: 30.0),
       ));
     }
 
-    return const Center(
+    return   Center(
         child: Text(
       AppStrings.trySearch,
-      style: TextStyle(color: Colors.black, fontSize: 30.0),
+      style: TextStyle(color: ModeCubit.isDark?DarkColors.text:LightColors.text, fontSize: 20.0),
     ));
   }
 }

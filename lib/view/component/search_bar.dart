@@ -1,7 +1,11 @@
+import 'package:fast_drugs/app.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
+import 'package:fast_drugs/shared/constants/dark_theme_colors.dart';
+import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../controller/search_cubit/search_cubit.dart';
 import '../../shared/components/components.dart';
 
@@ -18,54 +22,62 @@ class BuildSearchBar extends StatefulWidget {
 class _BuildSearchBarState extends State<BuildSearchBar> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ExpansionTile(
-          trailing: Text(''),
-          controller: expansionController,
-          title: Text(''),
-          children: SearchCubit.get(context)
-              .historySearch
-              .map((searchWord) => InkWell(
-                    onTap: () {
-                      _historyItemOnTap(context, searchWord);
-                    },
-                    child: HistoryItem(searchWord: searchWord),
-                  ))
-              .toList(),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              width: context.deviceWidth * 0.8,
-              child: DefaultFormField(
-                controller: widget.searchController,
-                suffix: widget.searchController.text.isNotEmpty
-                    ? Icons.close
-                    : null,
-                suffixOnPressed: () {
-                  setState(() {
-                    widget.searchController.clear();
-                  });
-                },
-                onChange: (word) {
-                  setState(() {});
-                },
-                onSubmit: (String word) {
-                  SearchCubit.get(context).search(name: word);
+    return Container(
+
+      child: Stack(
+        children: [
+          ExpansionTile(
+
+            trailing: Text(''),
+            controller: expansionController,
+            title: Text(''),
+            children: SearchCubit.get(context)
+                .historySearch
+                .map((searchWord) => InkWell(
+                      onTap: () {
+                        _historyItemOnTap(context, searchWord);
+                      },
+                      child: HistoryItem(searchWord: searchWord),
+                    ))
+                .toList(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: context.deviceWidth * 0.8,
+                child: DefaultFormField(
+
+                  controller: widget.searchController,
+                  suffix: widget.searchController.text.isNotEmpty
+                      ? Icons.close
+                      : null,
+                  suffixOnPressed: () {
+                    setState(() {
+                      widget.searchController.clear();
+                    });
+                  },
+                  onChange: (word) {
+                    setState(() {});
+
+                    SearchCubit.get(context).search(name: word);
+                  },
+                  onSubmit: (String word) {
+
+                  },
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.history),
+                color: ModeCubit.isDark? DarkColors.textField:LightColors.textField,
+                onPressed: () {
+                  _historyIconOnTap();
                 },
               ),
-            ),
-            IconButton(
-              icon: const Icon(Icons.history),
-              onPressed: () {
-                _historyIconOnTap();
-              },
-            ),
-          ],
-        )
-      ],
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -90,7 +102,7 @@ class HistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[100],
+      color:ModeCubit.isDark? DarkColors.ExpansionTileChildrenBackground:LightColors.ExpansionTileChildrenBackground,
       child: Align(
         alignment: Alignment.topRight,
         child: Padding(
@@ -100,7 +112,7 @@ class HistoryItem extends StatelessWidget {
           ),
           child: Text(
             searchWord,
-            style: TextStyle(fontSize: 20.sp),
+            style: TextStyle(fontSize: 20.sp,color: ModeCubit.isDark?DarkColors.ExpansionTileChildren:LightColors.ExpansionTileChildren,),
           ),
         ),
       ),
