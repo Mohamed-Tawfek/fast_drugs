@@ -3,6 +3,7 @@ import 'package:fast_drugs/helpers/dio_helper.dart';
 import 'package:fast_drugs/models/user_model.dart';
 import 'package:fast_drugs/shared/components/dialogs.dart';
 import 'package:fast_drugs/shared/constants/api_constants.dart';
+import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -41,7 +42,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       emit(CreateAccountSuccess());
     }).catchError((error) {
-      emit(CreateAccountError('ERROR'));
+      emit(CreateAccountError(AppStrings.error));
     });
   }
 }

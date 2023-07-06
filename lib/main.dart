@@ -13,8 +13,10 @@ void main() async {
   await CashHelper.init();
 
  ModeCubit.isDark=CashHelper.getData(key: 'isDark')??false;
+
   Bloc.observer = MyBlocObserver();
 
 print(CashHelper.getData(key: 'userID'));
+
   runApp(const MyApp());
 }

@@ -72,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                             showCustomSnackBar(
                                 context, AppStrings.successfullyRegistered);
 
-                            context.pushAndRemoveUntil(const HomeScreen());
+                            context.pushAndRemoveUntil( HomeScreen());
                           } else if (state is LoginUserError) {
                             context.pop();
                             showErrorDialog(

@@ -32,9 +32,11 @@ class LocationScreen extends StatelessWidget {
       zoomControlsEnabled: false,
       mapType: MapType.normal,
       myLocationButtonEnabled: false,
-
       myLocationEnabled: true,
-      initialCameraPosition: CameraPosition(target: LatLng(latitude, longitude),zoom: 20.0,   ),
+      initialCameraPosition: CameraPosition(
+        target: LatLng(latitude, longitude),
+        zoom: 20.0,
+      ),
     );
   }
 

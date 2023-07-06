@@ -4,7 +4,6 @@ import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../app.dart';
 import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../shared/components/dialogs.dart';
 import '../../shared/constants/dark_theme_colors.dart';

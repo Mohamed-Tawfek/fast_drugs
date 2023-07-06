@@ -1,3 +1,4 @@
+import 'package:fast_drugs/controller/home_cubit/home_cubit.dart';
 import 'package:fast_drugs/helpers/cash_helper.dart';
 import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:fast_drugs/themes/dark_theme.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
 Widget _initialScreen() {
   String? userID = CashHelper.getData(key: 'userID');
   if (userID != null) {
-    return const HomeScreen();
+    return HomeScreen();
   } else {
     return LoginScreen();
   }

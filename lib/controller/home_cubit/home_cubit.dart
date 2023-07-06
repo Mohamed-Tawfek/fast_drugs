@@ -13,15 +13,10 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
   static HomeCubit get(context) => BlocProvider.of(context);
-  List<Widget> screens =   [
-    SearchScreen(),
-      LocationScreen(),
-      DonationScreen(),
-      SettingsScreen(),
-  ];
+
   int currentIndex = 0;
   void bottomNavOnTap(int index) {
-    currentIndex=index;
+    currentIndex = index;
     emit(ChangeBottomNavState());
   }
 }
