@@ -3,6 +3,7 @@ import 'package:fast_drugs/helpers/cash_helper.dart';
 import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:fast_drugs/themes/dark_theme.dart';
 import 'package:fast_drugs/themes/light_theme.dart';
+import 'package:fast_drugs/view/screens/association_donations_screen.dart';
 import 'package:fast_drugs/view/screens/home_screen.dart';
 import 'package:fast_drugs/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +54,16 @@ class MyApp extends StatelessWidget {
 
 Widget _initialScreen() {
   String? userID = CashHelper.getData(key: 'userID');
+  String? role = CashHelper.getData(key: 'role');
   if (userID != null) {
-    return HomeScreen();
+    print(role);
+    if(role=="USER") {
+      return HomeScreen();
+    }
+    else {
+     return AssociationDonationsScreen();
+
+    }
   } else {
     return LoginScreen();
   }

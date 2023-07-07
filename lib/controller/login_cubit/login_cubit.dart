@@ -26,10 +26,14 @@ class LoginCubit extends Cubit<LoginState> {
     DioHelper.postData(endPoint: ApiConstants.loginEndPoint, data: sentData)
         .then((value) {
       user = UserModel.fromJson(value.data['user']);
+      print('*'*50);
+      print(user!.role);
+      print('*'*50);
       if (user != null) {
         CashHelper.setData(key: 'userID', value: user!.id);
-        CashHelper.setData(
-            key: 'userName', value: '${user!.firstName} ${user!.lastName}');
+        CashHelper.setData(key: 'role', value: user!.role);
+        CashHelper.setData(key: 'token', value: value.data['token']);
+
       }
       emit(LoginUserSuccess());
     }).catchError((error) {

@@ -66,6 +66,7 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               _divider(context),
                               _divider(context),
+                              _divider(context),
                               Padding(
                                 padding: EdgeInsetsDirectional.symmetric(
                                   horizontal: context.deviceWidth * 0.05,
@@ -87,6 +88,7 @@ class SettingsScreen extends StatelessWidget {
                                         text: AppStrings.changePassword),
                                     _divider(context),
                                     _divider(context),
+
                                     DefaultButton(
                                         color: ModeCubit.isDark
                                             ? DarkColors.dangerousBtn
@@ -102,21 +104,21 @@ class SettingsScreen extends StatelessWidget {
                                         },
                                         text: AppStrings.logout),
                                     _divider(context),
-                                    _divider(context),
-                                    DefaultButton(
-                                        color: ModeCubit.isDark
-                                            ? DarkColors.dangerousBtn
-                                            : LightColors.dangerousBtn,
-                                        function: () {
-                                          showConfirmDialog(
-                                              context: context,
-                                              onPressedOK: () {
-                                                cubit.removeAccount(context);
-                                              },
-                                              message: AppStrings
-                                                  .confirmRemoveAccount);
-                                        },
-                                        text: AppStrings.removeAccount),
+                                    // _divider(context),
+                                    // DefaultButton(
+                                    //     color: ModeCubit.isDark
+                                    //         ? DarkColors.dangerousBtn
+                                    //         : LightColors.dangerousBtn,
+                                    //     function: () {
+                                    //       showConfirmDialog(
+                                    //           context: context,
+                                    //           onPressedOK: () {
+                                    //             cubit.removeAccount(context);
+                                    //           },
+                                    //           message: AppStrings
+                                    //               .confirmRemoveAccount);
+                                    //     },
+                                    //     text: AppStrings.removeAccount),
                                   ],
                                 ),
                               ),
@@ -158,7 +160,6 @@ class SettingsScreen extends StatelessWidget {
     if (state is ChangePasswordLoadingState) {
       showProgressDialog(context);
     }
-
 
     if (state is ChangePasswordSuccessState) {
       showSuccessDialog(

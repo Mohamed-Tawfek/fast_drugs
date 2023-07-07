@@ -37,7 +37,7 @@ class AppStrings {
   static const String changePassword = 'تغيير كلمة المرور';
   static const String logout = 'تسجيل خروج';
   static const String darkMode = 'الوضع المظلم';
-  static const String requiredField = 'هذا الحقل مطلوب للتغيير';
+  static const String requiredField = 'هذا الحقل مطلوب';
   static const String change = 'تغيير';
   static const String cancel ='الغاء';
   static const String donate ='تبرع';
@@ -55,4 +55,11 @@ class AppStrings {
   static const String ok ='تم';
   static const String confirmLogout ='هل متأكد من تسجيل الخروج؟!';
   static const String confirmRemoveAccount ='هل متأكد من حذف حسابك؟!';
+  static const String accountType ='نوع الحساب';
+  static const String user ='مستخدم';
+  static const String association ='منظمة';
+  static const String associationName ='اسم المنظمة';
+  static const String associationError ='يجب عليك اختيار منظمة';
+  static const String ChoseAssociation ='اختر المنظمة المتبرع لها';
+  static const String donationDone ='تم التبرع بنجاح';
   }

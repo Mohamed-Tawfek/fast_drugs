@@ -19,7 +19,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> getUserData() async {
     emit(GetUserDataLoadingState());
     userID = CashHelper.getData(key: 'userID');
-    await DioHelper.putData(url: '${ApiConstants.registerEndPoint}/$userID')
+    await DioHelper.getData(endPoint: '${ApiConstants.registerEndPoint}/$userID',)
         .then((value) {
       currentUser = UserModel.fromJson(value.data);
       emit(GetUserDataSuccessState());

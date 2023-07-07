@@ -9,14 +9,21 @@ import '../../shared/constants/app_strings.dart';
 import '../../shared/constants/dark_theme_colors.dart';
 import '../../shared/constants/light_theme_colors.dart';
 
-class EditWidget extends StatelessWidget {
+class EditWidget extends StatefulWidget {
   EditWidget(
       {super.key, required this.editedElement, required this.cubitContext});
 
-  final TextEditingController editingController = TextEditingController();
   final String editedElement;
-  final _formKey = GlobalKey<FormState>();
   final BuildContext cubitContext;
+
+  @override
+  State<EditWidget> createState() => _EditWidgetState();
+}
+
+class _EditWidgetState extends State<EditWidget> {
+  final TextEditingController editingController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class EditWidget extends StatelessWidget {
         backgroundColor:
         ModeCubit.isDark ?DarkColors.scaffoldBackground:LightColors.scaffoldBackground ,
 
-        title: Text('تغيير ${editedElement}',
+        title: Text('تغيير ${widget.editedElement}',
             style: TextStyle(
               color: ModeCubit.isDark ?DarkColors.textField:LightColors.textField ,
             )
@@ -46,8 +53,8 @@ class EditWidget extends StatelessWidget {
         actions: [
           BuildEditActions(
               formKey: _formKey,
-              editedElement: editedElement,
-              cubitContext: cubitContext,
+              editedElement: widget.editedElement,
+              cubitContext: widget.cubitContext,
               editingController: editingController),
         ],
       ),

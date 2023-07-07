@@ -1,4 +1,5 @@
 import 'package:fast_drugs/app.dart';
+import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,29 +8,28 @@ import '../../controller/mode_cubit/mode_cubit.dart';
 import '../constants/dark_theme_colors.dart';
 
 class DefaultButton extends StatelessWidget {
-  DefaultButton({
-    Key? key,
-    required this.function,
-    required this.text,
-    this.isUpperCase = true,
-    this.radius = 10.0,
-      this.color
-  }) : super(key: key);
+  DefaultButton(
+      {Key? key,
+      required this.function,
+      required this.text,
+      this.isUpperCase = true,
+      this.radius = 10.0,
+      this.color})
+      : super(key: key);
 
   // Color background = Colors.green,
   bool isUpperCase = true;
   double radius;
   VoidCallback function;
   String text;
-   Color?  color;
+  Color? color;
   @override
   Widget build(BuildContext context) {
-    if(color==null){
-      color=ModeCubit.isDark ?DarkColors.button:LightColors.button;
+    if (color == null) {
+      color = ModeCubit.isDark ? DarkColors.button : LightColors.button;
     }
     return Container(
-      width: MediaQuery.of(context).size.width*0.5,
-
+      width: MediaQuery.of(context).size.width * 0.5,
       height: 50.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
@@ -39,17 +39,16 @@ class DefaultButton extends StatelessWidget {
       child: MaterialButton(
         color: color,
         onPressed: function,
-        shape:OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Colors.transparent)
-        ),
+        shape: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.transparent)),
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
-          style:   TextStyle(
-
-            color: ModeCubit.isDark ?DarkColors.buttonChild:LightColors.buttonChild,
-            fontSize: 18.sp
-          ),
+          style: TextStyle(
+              color: ModeCubit.isDark
+                  ? DarkColors.buttonChild
+                  : LightColors.buttonChild,
+              fontSize: 18.sp),
         ),
       ),
     );
@@ -57,7 +56,7 @@ class DefaultButton extends StatelessWidget {
 }
 
 class DefaultFormField extends StatelessWidget {
-   DefaultFormField(
+  DefaultFormField(
       {Key? key,
       required this.controller,
       this.type,
@@ -88,45 +87,45 @@ class DefaultFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       style: TextStyle(
-        color:ModeCubit.isDark? DarkColors.text:LightColors.text
-      ),
+          color: ModeCubit.isDark ? DarkColors.text : LightColors.text),
       controller: controller,
       enabled: isEnable,
       keyboardType: type,
       obscureText: isPassword,
       onFieldSubmitted: onSubmit,
       onChanged: onChange,
-      validator: validate,
+      validator: validate ??
+          (val) {
+            if (val == null || val.isEmpty) {
+              return AppStrings.requiredField;
+            }
+            return null;
+          },
       decoration: InputDecoration(
         labelText: label,
-         labelStyle: TextStyle(
-           color: ModeCubit.isDark?DarkColors.textField:LightColors.text
-         ),
+        labelStyle: TextStyle(
+            color: ModeCubit.isDark ? DarkColors.textField : LightColors.text),
         prefixIcon: prefix != null
             ? Icon(
                 prefix,
-          color: ModeCubit.isDark? DarkColors.text:LightColors.text,
+                color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
               )
             : null,
         suffixIcon: suffix != null
             ? IconButton(
                 icon: Icon(suffix),
                 onPressed: suffixOnPressed,
-          color: ModeCubit.isDark? DarkColors.text:LightColors.text,
+                color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
               )
             : null,
-        border:   OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0)
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color:ModeCubit.isDark? DarkColors.textField:LightColors.textField
-          ),
-            borderRadius: BorderRadius.circular(20.0)
-        ),
+            borderSide: BorderSide(
+                color: ModeCubit.isDark
+                    ? DarkColors.textField
+                    : LightColors.textField),
+            borderRadius: BorderRadius.circular(20.0)),
       ),
     );
   }
 }
-
-

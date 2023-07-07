@@ -13,30 +13,39 @@ import '../../shared/components/components.dart';
 import '../../shared/components/custom_snackBar.dart';
 import '../../shared/components/dialogs.dart';
 import '../../shared/constants/dark_theme_colors.dart';
+import 'association_donations_screen.dart';
 import 'home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   bool isPassword = true;
+
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: deviceWidth * 0.05),
-          child: Center(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Form(
-                key: formKey,
+          padding: EdgeInsets.symmetric(horizontal: context.deviceWidth * 0.05),
+          child: Form(
+            key: formKey,
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -51,15 +60,15 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: deviceHeight * 0.05,
+                      height: context.deviceHeight * 0.05,
                     ),
                     _buildEmailField(),
                     SizedBox(
-                      height: deviceHeight * 0.02,
+                      height: context.deviceHeight * 0.02,
                     ),
                     _buildPasswordField(),
                     SizedBox(
-                      height: deviceHeight * 0.03,
+                      height: context.deviceHeight * 0.03,
                     ),
                     BlocProvider(
                       create: (context) => LoginCubit(),
@@ -71,8 +80,14 @@ class LoginScreen extends StatelessWidget {
                             Navigator.of(context, rootNavigator: true).pop();
                             showCustomSnackBar(
                                 context, AppStrings.successfullyRegistered);
+                            if (LoginCubit.get(context).user!.role == 'USER') {
+                              context.pushAndRemoveUntil(HomeScreen());
+                            }
+                            else {
+                              context
+                                  .pushAndRemoveUntil(AssociationDonationsScreen());
+                            }
 
-                            context.pushAndRemoveUntil( HomeScreen());
                           } else if (state is LoginUserError) {
                             context.pop();
                             showErrorDialog(
@@ -94,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: deviceHeight * 0.02,
+                      height: context.deviceHeight * 0.02,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

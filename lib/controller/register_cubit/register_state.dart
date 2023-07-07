@@ -5,6 +5,7 @@ abstract class RegisterState {}
 
 class RegisterInitial extends RegisterState {}
 
+class ChangeRole extends RegisterState {}
 class CreateAccountInProgress extends RegisterState {}
 class CreateAccountSuccess extends RegisterState {}
 class CreateAccountError extends RegisterState {
