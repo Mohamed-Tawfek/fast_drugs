@@ -76,23 +76,27 @@ class BuildInfo extends StatelessWidget {
   final String value;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '$field :',
-          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          width: context.deviceWidth * 0.02,
-        ),
-        Expanded(
-          child: Text(
-            value,
-            style: TextStyle(fontSize: 20.sp),
+    return Container(
+      padding: EdgeInsetsDirectional.only(
+        end: context.deviceWidth*0.04
+      ),
+      child: Column(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+     mainAxisAlignment: MainAxisAlignment.start,
+         children: [
+          Text(
+            '$field :',
+            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
-        ),
-      ],
+          SizedBox(
+            width: context.deviceWidth * 0.01,
+          ),
+          Text(
+            value,
+            style: TextStyle(fontSize: 16.sp),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -103,6 +107,7 @@ class BuildNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+
       children: [
         BuildInfo(
           value: model.drugName,
@@ -110,7 +115,7 @@ class BuildNotification extends StatelessWidget {
         ),
         _buildDivider(context),
         BuildInfo(
-          value: model.quantity,
+          value: '${model.quantity}',
           field: 'الكمية',
         ),
         _buildDivider(context),

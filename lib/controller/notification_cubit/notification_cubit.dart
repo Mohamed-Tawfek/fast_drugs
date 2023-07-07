@@ -15,15 +15,15 @@ class NotificationCubit extends Cubit<NotificationState> {
   Future<void> getAllNotifications() async {
     emit(GetNotificationLoading());
     DioHelper.getData(endPoint: ApiConstants.notifyEndPoint).then((value) {
-      List data = value.data;
 
-      data.forEach((notify) {
+
+      value.data.forEach((notify) {
+
         notifications.add(NotificationModel.fromJson(notify));
+
       });
 
       emit(GetNotificationSuccess());
-    }).catchError((error) {
-      emit(GetNotificationError());
     });
-  }
+   }
 }
