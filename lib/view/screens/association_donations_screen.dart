@@ -1,7 +1,6 @@
 import 'package:fast_drugs/controller/notification_cubit/notification_cubit.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
-import 'package:fast_drugs/view/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,25 +34,24 @@ class AssociationDonationsScreen extends StatelessWidget {
                             fontSize: 23.sp, fontWeight: FontWeight.bold),
                       ),
                     );
-                  }
-                  else if(cubit.notifications.isEmpty &&
-                      state is! GetNotificationSuccess){
+                  } else if (cubit.notifications.isEmpty &&
+                      state is! GetNotificationSuccess) {
                     return Center(
                       child: CircularProgressIndicator(
                         color: LightColors.primary,
                       ),
                     );
-
-                  }  else{
+                  } else {
                     return ListView.separated(
-                        itemBuilder: (_,i)=>BuildNotification(model: cubit.notifications[i]),
-                        separatorBuilder: (_,i)=>Container(
-                          height: 1,
-                          width: double.infinity,
-                          padding: EdgeInsetsDirectional.symmetric(
-                            horizontal: context.deviceWidth*0.04
-                          ),
-                        ),
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (_, i) =>
+                            BuildNotification(model: cubit.notifications[i]),
+                        separatorBuilder: (_, i) => Container(
+                              height: 1,
+                              width: double.infinity,
+                              padding: EdgeInsetsDirectional.symmetric(
+                                  horizontal: context.deviceWidth * 0.04),
+                            ),
                         itemCount: cubit.notifications.length);
                   }
                 },
@@ -77,13 +75,11 @@ class BuildInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsetsDirectional.only(
-        end: context.deviceWidth*0.04
-      ),
+      padding: EdgeInsetsDirectional.only(end: context.deviceWidth * 0.04),
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
-     mainAxisAlignment: MainAxisAlignment.start,
-         children: [
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
           Text(
             '$field :',
             style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
@@ -107,7 +103,6 @@ class BuildNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
         BuildInfo(
           value: model.drugName,

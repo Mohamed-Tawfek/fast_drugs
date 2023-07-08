@@ -8,14 +8,21 @@ import '../../shared/constants/light_theme_colors.dart';
 import 'donation_screen.dart';
 import 'location_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-    HomeScreen({Key? key}) : super(key: key);
-    List<Widget> screens = [
+class UserHomeScreen extends StatefulWidget {
+     UserHomeScreen({Key? key}) : super(key: key);
+       List<Widget> screens = [
       SearchScreen(),
       LocationScreen(),
       DonationScreen(),
       SettingsScreen(),
     ];
+  @override
+  State<UserHomeScreen> createState() => _UserHomeScreenState();
+}
+
+class _UserHomeScreenState extends State<UserHomeScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -28,7 +35,7 @@ class HomeScreen extends StatelessWidget {
             return Scaffold(
               body: IndexedStack(
                 index: cubit.currentIndex,
-                children:  screens,
+                children:  widget.screens,
               ),
               bottomNavigationBar: CurvedNavigationBar(
                 color: LightColors.primary,
@@ -57,21 +64,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  // List<BottomNavigationBarItem> _buildBottomNavItems() {
-  //   return const [
-  //     BottomNavigationBarItem(
-  //         icon: Icon(Icons.search), label: AppStrings.search),
-  //     BottomNavigationBarItem(
-  //         icon: Icon(Icons.location_on_sharp), label: AppStrings.location),
-  //     BottomNavigationBarItem(
-  //       icon: Icon(Icons.volunteer_activism),
-  //       label: AppStrings.donation,
-  //     ),
-  //     BottomNavigationBarItem(
-  //       icon: Icon(Icons.settings),
-  //       label: AppStrings.settings,
-  //     ),
-  //   ];
-  // }
 }

@@ -14,7 +14,8 @@ import '../../shared/components/custom_snackBar.dart';
 import '../../shared/components/dialogs.dart';
 import '../../shared/constants/dark_theme_colors.dart';
 import 'association_donations_screen.dart';
-import 'home_screen.dart';
+import 'association_home_screen.dart';
+import 'user_home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -81,11 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             showCustomSnackBar(
                                 context, AppStrings.successfullyRegistered);
                             if (LoginCubit.get(context).user!.role == 'USER') {
-                              context.pushAndRemoveUntil(HomeScreen());
+                              context.pushAndRemoveUntil(UserHomeScreen());
                             }
                             else {
                               context
-                                  .pushAndRemoveUntil(AssociationDonationsScreen());
+                                  .pushAndRemoveUntil(AssociationHomeScreen());
                             }
 
                           } else if (state is LoginUserError) {

@@ -2,7 +2,7 @@ import 'package:fast_drugs/controller/register_cubit/register_cubit.dart';
 import 'package:fast_drugs/shared/components/dialogs.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/view/screens/association_donations_screen.dart';
-import 'package:fast_drugs/view/screens/home_screen.dart';
+import 'package:fast_drugs/view/screens/user_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:regexpattern/regexpattern.dart';
@@ -11,6 +11,7 @@ import '../../shared/components/components.dart';
 import '../../shared/components/custom_snackBar.dart';
 import '../../shared/constants/app_strings.dart';
 import '../component/choose_roles_widget.dart';
+import 'association_home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -60,10 +61,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           context, AppStrings.successfullyRegistered);
 
                       if (RegisterCubit.get(listenerContext).user!.role == 'USER') {
-                        context.pushAndRemoveUntil(HomeScreen());
+                        context.pushAndRemoveUntil(UserHomeScreen());
                       } else {
                         context
-                            .pushAndRemoveUntil(AssociationDonationsScreen());
+                            .pushAndRemoveUntil(AssociationHomeScreen());
                       }
                     } else if (state is CreateAccountError) {
                       context.pop();

@@ -34,7 +34,7 @@ class ChooseRoleWidget extends StatelessWidget {
 
                 underline: const SizedBox(),
                 focusColor: Colors.transparent,
-                // dropdownColor: Colors.red,
+                dropdownColor: ModeCubit.isDark?DarkColors.scaffoldBackground:LightColors.scaffoldBackground,
                 //iconEnabledColor: Colors.amber,
 
                 items: RegisterCubit.get(context)
@@ -43,6 +43,9 @@ class ChooseRoleWidget extends StatelessWidget {
                         value: _value, // this
                         child: Text(
                           _value,
+                          style: TextStyle(
+                            color: ModeCubit.isDark?DarkColors.textField:LightColors.textField
+                          ),
                         )))
                     .toList(),
                 onChanged: (role) {

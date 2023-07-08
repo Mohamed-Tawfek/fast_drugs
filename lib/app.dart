@@ -4,7 +4,8 @@ import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:fast_drugs/themes/dark_theme.dart';
 import 'package:fast_drugs/themes/light_theme.dart';
 import 'package:fast_drugs/view/screens/association_donations_screen.dart';
-import 'package:fast_drugs/view/screens/home_screen.dart';
+import 'package:fast_drugs/view/screens/association_home_screen.dart';
+import 'package:fast_drugs/view/screens/user_home_screen.dart';
 import 'package:fast_drugs/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,10 +59,10 @@ Widget _initialScreen() {
   if (userID != null) {
     print(role);
     if(role=="USER") {
-      return HomeScreen();
+      return UserHomeScreen();
     }
     else {
-     return AssociationDonationsScreen();
+     return AssociationHomeScreen();
 
     }
   } else {

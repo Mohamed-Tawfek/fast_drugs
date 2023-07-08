@@ -43,7 +43,7 @@ class DonationCubit extends Cubit<DonationState> {
     showProgressDialog(context);
     DioHelper.postData(endPoint: ApiConstants.donateEndPoint, data: {
       "DrugName": drugName,
-      "FirstName": '',
+      "FullName": '',
       "ExpirationDate": expirationDate,
       "Quantity": quantity,
       "Phone": phone,

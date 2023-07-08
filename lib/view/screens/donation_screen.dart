@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../shared/components/components.dart';
+import '../../shared/constants/dark_theme_colors.dart';
 import '../component/switch_mode.dart';
 
 class DonationScreen extends StatefulWidget {
@@ -88,11 +90,26 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                           _divider(context),
                           if (state is GetAssociationsSuccess)
                             DropdownButtonFormField(
+                              //  enabledBorder: OutlineInputBorder(
+                              //             borderSide: BorderSide(
+                              //                 color: ModeCubit.isDark
+                              //                     ? DarkColors.textField
+                              //                     : LightColors.textField),
+                              //             borderRadius: BorderRadius.circular(20.0))
                                 decoration: InputDecoration(
+
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
+                                      borderRadius: BorderRadius.circular(20.0),borderSide: BorderSide(
+                                      color:  ModeCubit.isDark
+                                          ? DarkColors.textField
+                                          : LightColors.textField
+                                  )),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
+                                      borderRadius: BorderRadius.circular(20.0),borderSide: BorderSide(
+                                    color:  ModeCubit.isDark
+                                                        ? DarkColors.textField
+                                                        : LightColors.textField
+                                  )),
                                 ),
                                 borderRadius: BorderRadius.circular(20.0),
                                 value:
@@ -103,21 +120,37 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                                   }
                                   return null;
                                 },
-                                hint: Text(AppStrings.ChoseAssociation),
+                                dropdownColor: ModeCubit.isDark
+                                    ? DarkColors.scaffoldBackground
+                                    : LightColors.scaffoldBackground,
+                                hint: Text(AppStrings.ChoseAssociation,
+                                style: TextStyle(
+                                    color: ModeCubit.isDark
+                                        ? DarkColors.textField
+                                        : LightColors.textField
+
+                                ),
+
+                                ),
                                 items: DonationCubit.get(context)
                                     .associations
                                     .map((association) => DropdownMenuItem(
                                           value: association,
                                           child: Text(
-                                              '${association.firstName} ${association.lastName}'),
+                                              '${association.firstName} ${association.lastName}',
+                                          style: TextStyle(
+                                            color: ModeCubit.isDark
+                                                ? DarkColors.textField
+                                                : LightColors.textField
+                                          ),
+
+                                          ),
                                         ))
                                     .toList(),
                                 onChanged: (association) {
                                   DonationCubit.get(context).choseAssociation =
                                       association;
-                                 print('-'*20);
-                                 print(DonationCubit.get(context).choseAssociation!.id);
-                                 print('-'*20);
+
                                 }),
                           _divider(context),
 
