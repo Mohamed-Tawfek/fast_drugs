@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app.dart';
 import 'controller/bloc_observer.dart';
+import 'controller/chat_cubit/chat_cubit.dart';
 import 'controller/donation_cubit/donation_cubit.dart';
 import 'controller/mode_cubit/mode_cubit.dart';
 

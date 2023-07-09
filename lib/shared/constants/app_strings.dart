@@ -62,4 +62,5 @@ class AppStrings {
   static const String associationError ='يجب عليك اختيار منظمة';
   static const String ChoseAssociation ='اختر المنظمة المتبرع لها';
   static const String donationDone ='تم التبرع بنجاح';
+  static const String whatFeel='ما الذى تشعر به؟';
   }

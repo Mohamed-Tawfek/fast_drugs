@@ -1,5 +1,6 @@
 import 'package:fast_drugs/controller/profile_cubit/profile_cubit.dart';
 import 'package:fast_drugs/shared/components/components.dart';
+import 'package:fast_drugs/shared/components/custom_snackBar.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
 import 'package:fast_drugs/shared/constants/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +140,8 @@ class SettingsScreen extends StatelessWidget {
       showProgressDialog(context);
     }
     if (state is GetUserDataErrorState) {
-      showErrorDialog(context: context, message: AppStrings.error);
+
+      showCustomSnackBar(context, AppStrings.error,);
     }
 
     if (state is ChangeFirstNameLoadingState) {

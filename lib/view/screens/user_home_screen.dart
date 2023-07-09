@@ -1,9 +1,13 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:fast_drugs/controller/home_cubit/home_cubit.dart';
+import 'package:fast_drugs/controller/mode_cubit/mode_cubit.dart';
+import 'package:fast_drugs/shared/components/extensions.dart';
+import 'package:fast_drugs/view/screens/chat_screen.dart';
 import 'package:fast_drugs/view/screens/search_screen.dart';
 import 'package:fast_drugs/view/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../shared/constants/dark_theme_colors.dart';
 import '../../shared/constants/light_theme_colors.dart';
 import 'donation_screen.dart';
 import 'location_screen.dart';
@@ -57,6 +61,15 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                   Icon(Icons.settings,
                       color: Theme.of(context).scaffoldBackgroundColor)
                 ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: (){
+                  context.push(ChatScreen());
+                },
+                child: Icon(Icons.chat,
+                color: ModeCubit.isDark?DarkColors.chatIcon:LightColors.chatIcon,
+
+                ),
               ),
             );
           },

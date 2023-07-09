@@ -6,6 +6,9 @@ class DarkColors {
   static const statusBar = Color(0xff121b22);
   static const appBar = Color(0xff121b22);
   static const scaffoldBackground = Color(0xff121b22);
+  static const chatIcon = Color(0xff121b22);
+  static   const chatMsg  = Color(0xff121b22);
+
   static const btnNavSelectedItem = Colors.green;
   static const appBarIcon = Colors.green;
   static const cancelColor = Colors.red;
@@ -13,6 +16,7 @@ class DarkColors {
   static const textField = Colors.white;
   static const buttonChild = Colors.white;
   static const button = Colors.green;
+  static const sendIcon = Colors.green;
   static   Color? text  = Colors.grey[600];
 
   static   Color? listTileChildren  = Colors.white;
@@ -22,5 +26,6 @@ class DarkColors {
 
   static  const dangerousBtn  = Colors.red;
 
-
+  static   const sendChatBubble  = Colors.green;
+  static     Color? receiveChatBubble  = Colors.grey[200];
 }

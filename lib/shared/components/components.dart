@@ -68,6 +68,7 @@ class DefaultFormField extends StatelessWidget {
       this.prefix,
       this.suffix,
       this.suffixOnPressed,
+        this.hint,
       this.isEnable = true})
       : super(key: key);
 
@@ -78,6 +79,7 @@ class DefaultFormField extends StatelessWidget {
   bool isPassword;
   String? Function(String?)? validate;
   String? label;
+  String? hint;
   IconData? prefix;
   IconData? suffix;
   void Function()? suffixOnPressed;
@@ -85,46 +87,52 @@ class DefaultFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      style: TextStyle(
-          color: ModeCubit.isDark ? DarkColors.text : LightColors.text),
-      controller: controller,
-      enabled: isEnable,
-      keyboardType: type,
-      obscureText: isPassword,
-      onFieldSubmitted: onSubmit,
-      onChanged: onChange,
-      validator: validate ??
-          (val) {
-            if (val == null || val.isEmpty) {
-              return AppStrings.requiredField;
-            }
-            return null;
-          },
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(
-            color: ModeCubit.isDark ? DarkColors.textField : LightColors.text),
-        prefixIcon: prefix != null
-            ? Icon(
-                prefix,
-                color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
-              )
-            : null,
-        suffixIcon: suffix != null
-            ? IconButton(
-                icon: Icon(suffix),
-                onPressed: suffixOnPressed,
-                color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
-              )
-            : null,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-                color: ModeCubit.isDark
-                    ? DarkColors.textField
-                    : LightColors.textField),
-            borderRadius: BorderRadius.circular(20.0)),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: TextFormField(
+        style: TextStyle(
+            color: ModeCubit.isDark ? DarkColors.text : LightColors.text),
+        controller: controller,
+        enabled: isEnable,
+        keyboardType: type,
+        obscureText: isPassword,
+        onFieldSubmitted: onSubmit,
+        onChanged: onChange,
+        validator: validate ??
+            (val) {
+              if (val == null || val.isEmpty) {
+                return AppStrings.requiredField;
+              }
+              return null;
+            },
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          hintStyle: TextStyle(
+              color: ModeCubit.isDark ? DarkColors.textField : LightColors.text),
+          labelStyle: TextStyle(
+              color: ModeCubit.isDark ? DarkColors.textField : LightColors.text),
+          prefixIcon: prefix != null
+              ? Icon(
+                  prefix,
+                  color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
+                )
+              : null,
+          suffixIcon: suffix != null
+              ? IconButton(
+                  icon: Icon(suffix),
+                  onPressed: suffixOnPressed,
+                  color: ModeCubit.isDark ? DarkColors.text : LightColors.text,
+                )
+              : null,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: ModeCubit.isDark
+                      ? DarkColors.textField
+                      : LightColors.textField),
+              borderRadius: BorderRadius.circular(20.0)),
+        ),
       ),
     );
   }

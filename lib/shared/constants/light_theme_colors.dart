@@ -17,5 +17,13 @@ class LightColors {
   static   Color? listTileChildren  = Colors.black;
   static   const dangerousBtn  = Colors.red;
 
+  static   const chatIcon  = Colors.white;
+
+  static   const sendChatBubble  = Colors.green;
+  static     Color? receiveChatBubble  = Colors.grey[100];
+
+  static   const chatMsg  = Colors.black;
+  static const sendIcon = Colors.green;
+
 
 }
