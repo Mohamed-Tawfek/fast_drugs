@@ -5,7 +5,6 @@ class NotificationModel {
   late int quantity;
   late String phone;
   late String address;
-  late String email;
 
   NotificationModel.fromJson(json) {
     name = json['FullName'];
@@ -14,6 +13,5 @@ class NotificationModel {
     quantity = json['Quantity'];
     phone = json['Phone'];
     address = json['Address'];
-    email = json['donatedBy']['Email'];
   }
 }

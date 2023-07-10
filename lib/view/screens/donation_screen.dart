@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/constants/dark_theme_colors.dart';
-import '../component/switch_mode.dart';
+import '../component/selection_association_widget.dart';
 
 class DonationScreen extends StatefulWidget {
   DonationScreen({Key? key}) : super(key: key);
@@ -21,7 +21,6 @@ class DonationScreen extends StatefulWidget {
 }
 
 class _DonationScreenState extends State<DonationScreen> {
-
   final TextEditingController _drugNameController = TextEditingController();
 
   final TextEditingController _expirationDateController =
@@ -32,7 +31,7 @@ class _DonationScreenState extends State<DonationScreen> {
   final TextEditingController _phone = TextEditingController();
 
   final TextEditingController _address = TextEditingController();
-final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -44,7 +43,7 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
               horizontal: context.deviceWidth * 0.06,
             ),
             child: Form(
-              key:_formKey ,
+              key: _formKey,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: BlocProvider(
@@ -52,13 +51,10 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                   child: BlocConsumer<DonationCubit, DonationState>(
                     listener: (context, state) {
                       if (state is GetAssociationsLoading) {
-                        showProgressDialog(context);
+                        // showProgressDialog(context);
                       }
-                      if (state is GetAssociationsSuccess) {
-                        //Navigator.pop(context);
-                      }
+                      if (state is GetAssociationsSuccess) {}
                       if (state is GetAssociationsError) {
-                        Navigator.pop(context);
                         showErrorDialog(
                             context: context, message: AppStrings.error);
                       }
@@ -88,72 +84,8 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                             ],
                           ),
                           _divider(context),
-                          if (state is GetAssociationsSuccess)
-                            DropdownButtonFormField(
-                              //  enabledBorder: OutlineInputBorder(
-                              //             borderSide: BorderSide(
-                              //                 color: ModeCubit.isDark
-                              //                     ? DarkColors.textField
-                              //                     : LightColors.textField),
-                              //             borderRadius: BorderRadius.circular(20.0))
-                                decoration: InputDecoration(
-
-                                  enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),borderSide: BorderSide(
-                                      color:  ModeCubit.isDark
-                                          ? DarkColors.textField
-                                          : LightColors.textField
-                                  )),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),borderSide: BorderSide(
-                                    color:  ModeCubit.isDark
-                                                        ? DarkColors.textField
-                                                        : LightColors.textField
-                                  )),
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
-                                value:
-                                    DonationCubit.get(context).choseAssociation,
-                                validator: (val) {
-                                  if (val == null) {
-                                    return AppStrings.associationError;
-                                  }
-                                  return null;
-                                },
-                                dropdownColor: ModeCubit.isDark
-                                    ? DarkColors.scaffoldBackground
-                                    : LightColors.scaffoldBackground,
-                                hint: Text(AppStrings.ChoseAssociation,
-                                style: TextStyle(
-                                    color: ModeCubit.isDark
-                                        ? DarkColors.textField
-                                        : LightColors.textField
-
-                                ),
-
-                                ),
-                                items: DonationCubit.get(context)
-                                    .associations
-                                    .map((association) => DropdownMenuItem(
-                                          value: association,
-                                          child: Text(
-                                              '${association.firstName} ${association.lastName}',
-                                          style: TextStyle(
-                                            color: ModeCubit.isDark
-                                                ? DarkColors.textField
-                                                : LightColors.textField
-                                          ),
-
-                                          ),
-                                        ))
-                                    .toList(),
-                                onChanged: (association) {
-                                  DonationCubit.get(context).choseAssociation =
-                                      association;
-
-                                }),
+                          SelectionAssociation(),
                           _divider(context),
-
                           DefaultFormField(
                             controller: _drugNameController,
                             label: AppStrings.drugName,
@@ -180,22 +112,20 @@ final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
                             label: AppStrings.address,
                           ),
                           _divider(context),
-                          DefaultButton(function: () {
-                            if
-                            (_formKey.currentState!.validate()){
-                                DonationCubit.get(context).donate(
-                                    drugName: _drugNameController.text,
-                                    expirationDate: _expirationDateController.text,
-                                    quantity: _quantity.text,
-                                    phone: _phone.text,
-                                    address: _address.text,
-                                    context: context
-                                );
-                            }
-                             print('*'*10);
-                                print(DonationCubit.get(context).choseAssociation!.id);
-                            print('*'*10);
-                          }, text: AppStrings.donate),
+                          DefaultButton(
+                              function: () {
+                                if (_formKey.currentState!.validate()) {
+                                  DonationCubit.get(context).donate(
+                                      drugName: _drugNameController.text,
+                                      expirationDate:
+                                          _expirationDateController.text,
+                                      quantity: _quantity.text,
+                                      phone: _phone.text,
+                                      address: _address.text,
+                                      context: context);
+                                }
+                              },
+                              text: AppStrings.donate),
                         ],
                       );
                     },

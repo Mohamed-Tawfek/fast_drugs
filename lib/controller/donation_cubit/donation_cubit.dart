@@ -18,8 +18,10 @@ class DonationCubit extends Cubit<DonationState> {
   static DonationCubit get(context) => BlocProvider.of(context);
   List<AssociationModel> associations = [];
   AssociationModel? choseAssociation;
+  String userID = CashHelper.getData(key: 'userID');
   Future<void> getAssociations() async {
     emit(GetAssociationsLoading());
+    associations = [];
     DioHelper.getData(endPoint: ApiConstants.associationsPoint).then((value) {
       List data = value.data;
       data.forEach((association) {
@@ -41,26 +43,25 @@ class DonationCubit extends Cubit<DonationState> {
       required BuildContext context}) async {
     emit(DonateLoading());
     showProgressDialog(context);
+
     DioHelper.postData(endPoint: ApiConstants.donateEndPoint, data: {
       "DrugName": drugName,
-      "FullName": '',
       "ExpirationDate": expirationDate,
       "Quantity": quantity,
       "Phone": phone,
       "Address": address,
-      "donatedBy": CashHelper.getData(key: 'userID'),
+      "donatedBy": userID,
       "association": choseAssociation!.id
     }).then((value) {
+      print(value);
       emit(DonateSuccess());
-      context.pop;
+      context.pop();
+
       showCustomSnackBar(context, AppStrings.donationDone);
     }).catchError((error) {
-      print(error.toString());
-
-      emit(DonateError());
-      context.pop;
-      context.pop;
+      context.pop();
       showErrorDialog(context: context, message: AppStrings.error);
+      emit(DonateError());
     });
   }
 }

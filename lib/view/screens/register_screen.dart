@@ -60,10 +60,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       showCustomSnackBar(
                           context, AppStrings.successfullyRegistered);
 
-                      if (RegisterCubit.get(listenerContext).user!.role == 'USER') {
-                        context.pushAndRemoveUntil(UserHomeScreen());
+                      if (RegisterCubit.get(listenerContext).user!.role ==
+                          'USER') {
+                        listenerContext.pushAndRemoveUntil(UserHomeScreen());
                       } else {
-                        context
+                        listenerContext
                             .pushAndRemoveUntil(AssociationHomeScreen());
                       }
                     } else if (state is CreateAccountError) {

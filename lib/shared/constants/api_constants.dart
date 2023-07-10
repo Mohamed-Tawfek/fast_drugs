@@ -7,7 +7,7 @@ class ApiConstants{
   static const String logoutEndPoint='logout/';
   static const String searchEndPoint='products/';
   static const String associationsPoint='associations/';
-  static const String donateEndPoint='donate/';
+  static const String donateEndPoint='donate';
   static const String notifyEndPoint='associations/donations';
   static const String chatApi='https://matching-medications-prediction.onrender.com/prediction';
 

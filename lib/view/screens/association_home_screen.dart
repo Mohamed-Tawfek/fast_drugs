@@ -12,7 +12,7 @@ class  AssociationHomeScreen extends StatefulWidget {
     List<Widget> screens = [
 
       AssociationDonationsScreen(),
-      SettingsScreen(),
+      SettingsScreen(forUser: false),
     ];
   @override
   State<AssociationHomeScreen> createState() => _AssociationHomeScreenState();

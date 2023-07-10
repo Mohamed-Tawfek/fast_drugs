@@ -1,6 +1,6 @@
 class AppStrings {
   AppStrings._();
-  static const String appName = 'Fast Drugs';
+  static const String appName = 'Fast Drug';
   static const String search = 'بحث';
   static const String location = 'الموقع';
   static const String donation = 'التبرع';
@@ -57,10 +57,12 @@ class AppStrings {
   static const String confirmRemoveAccount ='هل متأكد من حذف حسابك؟!';
   static const String accountType ='نوع الحساب';
   static const String user ='مستخدم';
-  static const String association ='منظمة';
-  static const String associationName ='اسم المنظمة';
-  static const String associationError ='يجب عليك اختيار منظمة';
-  static const String ChoseAssociation ='اختر المنظمة المتبرع لها';
+  static const String association ='جمعية';
+  static const String associationName ='اسم الجمعية';
+  static const String associationError ='يجب عليك اختيار جمعية';
+  static const String ChoseAssociation ='اختر الجمعية المتبرع لها';
   static const String donationDone ='تم التبرع بنجاح';
   static const String whatFeel='ما الذى تشعر به؟';
+  static const String noDonations='لا توجد تبرعات';
+  static const String donorName='اسم المتبرع';
   }

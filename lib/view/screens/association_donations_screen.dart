@@ -1,10 +1,13 @@
 import 'package:fast_drugs/controller/notification_cubit/notification_cubit.dart';
 import 'package:fast_drugs/shared/components/extensions.dart';
+import 'package:fast_drugs/shared/constants/app_strings.dart';
+import 'package:fast_drugs/shared/constants/dark_theme_colors.dart';
 import 'package:fast_drugs/shared/constants/light_theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../controller/mode_cubit/mode_cubit.dart';
 import '../../models/notification_model.dart';
 
 class AssociationDonationsScreen extends StatelessWidget {
@@ -29,7 +32,7 @@ class AssociationDonationsScreen extends StatelessWidget {
                       state is GetNotificationSuccess) {
                     return Center(
                       child: Text(
-                        'لا توجد تبرعات',
+                        AppStrings.noDonations,
                         style: TextStyle(
                             fontSize: 23.sp, fontWeight: FontWeight.bold),
                       ),
@@ -46,12 +49,20 @@ class AssociationDonationsScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (_, i) =>
                             BuildNotification(model: cubit.notifications[i]),
-                        separatorBuilder: (_, i) => Container(
-                              height: 1,
-                              width: double.infinity,
-                              padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: context.deviceWidth * 0.04),
-                            ),
+                        separatorBuilder: (_, i) => Padding(
+
+                          padding: EdgeInsetsDirectional.symmetric(
+
+                              horizontal: context.deviceWidth * 0.06,
+                          vertical:context.deviceHeight*0.02
+                          ),
+                          child: Container(
+                                height: 1,
+                                color: ModeCubit.isDark?DarkColors.primary:LightColors.primary,
+                                width: context.deviceWidth,
+
+                              ),
+                        ),
                         itemCount: cubit.notifications.length);
                   }
                 },
@@ -63,9 +74,7 @@ class AssociationDonationsScreen extends StatelessWidget {
     );
   }
 
-  SizedBox _buildDivider(BuildContext context) => SizedBox(
-        height: context.deviceHeight * 0.01,
-      );
+
 }
 
 class BuildInfo extends StatelessWidget {
@@ -82,14 +91,18 @@ class BuildInfo extends StatelessWidget {
         children: [
           Text(
             '$field :',
-            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold,
+            color: ModeCubit.isDark?DarkColors.text:LightColors.text,
+            ),
           ),
           SizedBox(
             width: context.deviceWidth * 0.01,
           ),
           Text(
             value,
-            style: TextStyle(fontSize: 16.sp),
+            style: TextStyle(fontSize: 16.sp,
+              color: ModeCubit.isDark?DarkColors.text:LightColors.text,
+            ),
           ),
         ],
       ),
@@ -106,38 +119,34 @@ class BuildNotification extends StatelessWidget {
       children: [
         BuildInfo(
           value: model.drugName,
-          field: 'اسم الدواء',
+          field: AppStrings.drugName,
         ),
         _buildDivider(context),
         BuildInfo(
           value: '${model.quantity}',
-          field: 'الكمية',
+          field: AppStrings.quantity,
         ),
         _buildDivider(context),
         BuildInfo(
           value: model.expirationDate,
-          field: 'تاريخ انتهاء الصلاحية',
+          field: AppStrings.expirationDate,
         ),
         _buildDivider(context),
         BuildInfo(
           value: model.name,
-          field: 'اسم المتبرع',
+          field: AppStrings.donorName,
         ),
         _buildDivider(context),
         BuildInfo(
           value: model.phone,
-          field: 'رقم الهاتف',
+          field: AppStrings.phone,
         ),
         _buildDivider(context),
         BuildInfo(
           value: model.address,
-          field: 'العنوان',
+          field: AppStrings.address,
         ),
-        _buildDivider(context),
-        BuildInfo(
-          value: model.email,
-          field: 'البريد الالكترونى',
-        ),
+
       ],
     );
   }

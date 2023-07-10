@@ -83,6 +83,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(LogoutSuccessState());
       CashHelper.remove(key: 'userID').then((value) {
         CashHelper.remove(key: 'historySearch');
+        CashHelper.remove(key: 'chatMessage');
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
       }).catchError((error) {

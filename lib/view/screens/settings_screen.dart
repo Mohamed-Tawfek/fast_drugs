@@ -13,8 +13,8 @@ import '../component/edit_widget.dart';
 import '../component/switch_mode.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
-
+  SettingsScreen({super.key,this.forUser=true});
+bool forUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +41,12 @@ class SettingsScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               DetailItem(
-                                title: AppStrings.firstName,
+                                title: forUser?AppStrings.firstName:AppStrings.associationName,
                                 value: cubit.currentUser!.firstName,
                                 cubitContext: context,
                               ),
                               _divider(context),
+                              if(forUser)
                               DetailItem(
                                 title: AppStrings.lastName,
                                 value: cubit.currentUser!.lastName,
@@ -105,21 +106,7 @@ class SettingsScreen extends StatelessWidget {
                                         },
                                         text: AppStrings.logout),
                                     _divider(context),
-                                    // _divider(context),
-                                    // DefaultButton(
-                                    //     color: ModeCubit.isDark
-                                    //         ? DarkColors.dangerousBtn
-                                    //         : LightColors.dangerousBtn,
-                                    //     function: () {
-                                    //       showConfirmDialog(
-                                    //           context: context,
-                                    //           onPressedOK: () {
-                                    //             cubit.removeAccount(context);
-                                    //           },
-                                    //           message: AppStrings
-                                    //               .confirmRemoveAccount);
-                                    //     },
-                                    //     text: AppStrings.removeAccount),
+
                                   ],
                                 ),
                               ),
